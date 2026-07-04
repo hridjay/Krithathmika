@@ -1,0 +1,6 @@
+{
+  "name": "Krithathmika Science Magazine",
+  "description": "First digital edition of the Krithathmika High-school Science Magazine, featuring scientific articles with page-flip animations, immersive document readers, and fine arts exhibits.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Lora", Georgia, serif;
+  --font-display: "Cinzel", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-parchment: #fcfaf6;
+  --color-parchment-dark: #f5ece1;
+  --color-leather: #523a28;
+  --color-brass: #8c6239;
+  --color-brass-light: #c5a059;
+  --color-paper-shadow: rgba(82, 58, 40, 0.15);
+}
+
+/* Custom styles for our school magazine */
+
+body {
+  background-color: #261b11; /* Warm, rich leather/wood table background */
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.85) 100%),
+    repeating-linear-gradient(45deg, rgba(20,13,8,0.1) 0px, rgba(20,13,8,0.1) 2px, transparent 2px, transparent 10px);
+  color: #2b1b10;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Book page curl effects and textures */
+.page-texture {
+  background-image: 
+    linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0.95) 8%, #fcfaf6 15%, #fcfaf6 92%, rgba(240,230,215,0.5) 98%, rgba(200,180,150,0.4) 100%);
+}
+
+.page-texture-left {
+  background-image: 
+    linear-gradient(to left, rgba(255,255,255,0.8), rgba(255,255,255,0.95) 8%, #fcfaf6 15%, #fcfaf6 92%, rgba(240,230,215,0.5) 98%, rgba(200,180,150,0.4) 100%);
+}
+
+/* realistic center binding shadow */
+.book-spine {
+  box-shadow: 
+    0 0 30px rgba(0,0,0,0.2),
+    inset 0 0 20px rgba(0,0,0,0.1);
+}
+
+.center-spine-shadow {
+  background: linear-gradient(
+    to right, 
+    rgba(0, 0, 0, 0.15) 0%, 
+    rgba(0, 0, 0, 0.0) 25%, 
+    rgba(0, 0, 0, 0.0) 75%, 
+    rgba(0, 0, 0, 0.15) 100%
+  );
+}
+
+/* Elegant scrollbar for modern school aesthetics */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5ece1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8c6239;
+  border-radius: 4px;
+  border: 1px solid #f5ece1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #523a28;
+}
+
+/* Custom paper page turn effects */
+.page-fold-corner {
+  background: linear-gradient(135deg, transparent 50%, rgba(82, 58, 40, 0.12) 50%, rgba(82, 58, 40, 0.2) 100%);
+}
+
+/* Equation block layout */
+.equation-block {
+  font-family: var(--font-mono);
+  background: rgba(140, 98, 57, 0.05);
+  border-left: 3px solid #8c6239;
+  padding: 0.75rem 1rem;
+  border-radius: 0 4px 4px 0;
+  margin: 1rem 0;
+  font-size: 0.85rem;
+  color: #523a28;
+  overflow-x: auto;
+}
+
+/* Animation classes */
+@keyframes pageFlipRight {
+  0% {
+    transform: rotateY(0deg);
+    transform-origin: left center;
+  }
+  100% {
+    transform: rotateY(-180deg);
+    transform-origin: left center;
+  }
+}
+
+@keyframes pageFlipLeft {
+  0% {
+    transform: rotateY(0deg);
+    transform-origin: right center;
+  }
+  100% {
+    transform: rotateY(180deg);
+    transform-origin: right center;
+  }
+}
+
+/* Print layout for reading full scientific texts perfectly like a downloaded PDF */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    font-family: 'Lora', serif !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-page {
+    page-break-after: always;
+    padding: 2rem !important;
+    background: white !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
