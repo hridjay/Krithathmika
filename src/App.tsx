@@ -25,10 +25,8 @@ import {
   BookMarked
 } from "lucide-react";
 import { EDITORIALS, PAINTINGS, Editorial, Painting } from "./data";
-import WebsiteView from "./components/WebsiteView";
 
 export default function App() {
-  const [viewMode, setViewMode] = useState<"website" | "flipbook">("website");
   
   // Page state
   // Page 1: Cover Page
@@ -592,54 +590,27 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col relative select-none text-leather overflow-hidden">
       
-      {viewMode === "website" ? (
-        <WebsiteView 
-          onOpenEditorial={(ed) => {
-            playPageFlipSound();
-            setActivePdfEditorial(ed);
-            setPdfActiveSection(0);
-            setPdfPage(1);
-          }}
-          onSwitchToFlipbook={() => {
-            playPageFlipSound();
-            setViewMode("flipbook");
-          }}
-          isMuted={isMuted}
-          onToggleMute={() => setIsMuted(!isMuted)}
-        />
-      ) : (
-        <div className="min-h-screen bg-[#110d0a] flex flex-col">
-          {/* Top Banner & Control Header */}
-          <header className="bg-leather text-parchment shadow-md border-b border-brass/35 py-3 px-4 md:px-8 flex items-center justify-between relative z-30 no-print select-none">
-            <div className="flex items-center gap-3">
-              {/* Logo Crest */}
-              <button 
-                onClick={() => animateFlipToPage(1)} 
-                className="flex items-center gap-2.5 text-left hover:opacity-90 transition group"
-              >
-                <div className="h-9 w-9 rounded-full bg-brass flex items-center justify-center text-parchment border border-brass-light/40 group-hover:scale-105 transition">
-                  <Award className="h-5 w-5" />
-                </div>
-                <div>
-                  <span className="font-display text-base tracking-widest font-extrabold block">KRITHATHMIKA</span>
-                  <span className="font-sans text-[10px] tracking-wider text-brass-light block uppercase font-semibold">High-School Science Society</span>
-                </div>
-              </button>
-            </div>
+      <div className="min-h-screen bg-[#110d0a] flex flex-col">
+        {/* Top Banner & Control Header */}
+        <header className="bg-leather text-parchment shadow-md border-b border-brass/35 py-3 px-4 md:px-8 flex items-center justify-between relative z-30 no-print select-none">
+          <div className="flex items-center gap-3">
+            {/* Logo Crest */}
+            <button 
+              onClick={() => animateFlipToPage(1)} 
+              className="flex items-center gap-2.5 text-left hover:opacity-90 transition group"
+            >
+              <div className="h-9 w-9 rounded-full bg-brass flex items-center justify-center text-parchment border border-brass-light/40 group-hover:scale-105 transition">
+                <Award className="h-5 w-5" />
+              </div>
+              <div>
+                <span className="font-display text-base tracking-widest font-extrabold block">KRITHATHMIKA</span>
+                <span className="font-sans text-[10px] tracking-wider text-brass-light block uppercase font-semibold">High-School Science Society</span>
+              </div>
+            </button>
+          </div>
 
-            {/* Dynamic Top Navigation Controls */}
-            <div className="flex items-center gap-1 md:gap-4 font-sans text-xs font-semibold uppercase tracking-wider">
-              {/* Return to Website button */}
-              <button
-                onClick={() => {
-                  playPageFlipSound();
-                  setViewMode("website");
-                }}
-                className="px-3 py-1.5 bg-[#d4af37] hover:bg-amber-400 text-stone-950 rounded flex items-center gap-1.5 transition text-[10px] font-bold cursor-pointer shadow border border-amber-300/30 mr-1"
-              >
-                <BookOpen className="h-3.5 w-3.5" />
-                <span>Website Home</span>
-              </button>
+          {/* Dynamic Top Navigation Controls */}
+          <div className="flex items-center gap-1 md:gap-4 font-sans text-xs font-semibold uppercase tracking-wider">
           {/* Cover & TOC links */}
           <button 
             onClick={() => animateFlipToPage(1)}
@@ -1009,8 +980,7 @@ export default function App() {
           </div>
         </div>
       </main>
-        </div>
-      )}
+    </div>
 
       {/* --- IMMERSIVE FULL PDF SCIENTIFIC READER OVERLAY --- */}
       <AnimatePresence>
